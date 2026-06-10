@@ -5,6 +5,18 @@
 このテンプレートには Kiro のワークスペース設定が含まれています。
 Kiro でリポジトリを開くと、steering と skills が自動的に読み込まれます。
 
+## MCP サーバー（Agent Toolkit for AWS）
+
+`.kiro/settings/mcp.json` で [Agent Toolkit for AWS](https://github.com/aws/agent-toolkit-for-aws) の MCP サーバーが設定されています。以下の機能が利用できます:
+
+- AWS ドキュメント検索（`search_documentation`）
+- Agent Skills のオンデマンド検索・取得（`retrieve_skill`）
+- AWS CLI コマンド実行（`call_aws`）
+- Python スクリプト実行（`run_script`）
+- リージョン別サービス可用性の確認
+
+AWS の汎用スキルはローカルにインストールせず、MCP サーバー経由でオンデマンド検索されます。
+
 ## Steering（方針ガイド）
 
 `.kiro/steering/` に配置された方針ファイルが、Kiro の動作を案内します。

@@ -44,5 +44,14 @@ agents/.env
 *.pyc
 
 # AgentCore CLI
+agents/agentcore/.env.local
+agents/agentcore/deployed-state.json
+agents/agentcore/cdk/cdk.out/
+agents/agentcore/cdk/node_modules/
+
+# Notes (private)
+notes/
+
+# Legacy (Starter Toolkit)
 agents/.bedrock_agentcore.yaml
 agents/.bedrock_agentcore/

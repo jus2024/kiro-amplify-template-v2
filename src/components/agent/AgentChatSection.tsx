@@ -1,8 +1,8 @@
 "use client";
 
-import { useAgentChat } from "@/src/hooks/useAgentChat";
-import MessageList from "./MessageList";
-import MessageInput from "./MessageInput";
+import { CopilotChat } from "@copilotkit/react-ui";
+import "@copilotkit/react-ui/styles.css";
+import { CopilotProvider } from "@/src/lib/agent/CopilotProvider";
 
 interface AgentChatSectionProps {
   runtimeArn: string | undefined;
@@ -10,11 +10,10 @@ interface AgentChatSectionProps {
 
 /**
  * エージェントチャット UI セクション。
- * AgentCore Runtime との HTTP SSE 通信によるサンプル対話 UI を提供する。
+ * CopilotKit + AG-UI プロトコルで AgentCore Runtime と通信する。
+ * 通信は /api/copilotkit (Next.js API Route) 経由。
  */
 export default function AgentChatSection({ runtimeArn }: AgentChatSectionProps) {
-  const { messages, isLoading, error, sendMessage } = useAgentChat(runtimeArn);
-
   const isRuntimeConfigured = !!runtimeArn?.trim();
 
   return (
@@ -41,8 +40,8 @@ export default function AgentChatSection({ runtimeArn }: AgentChatSectionProps) 
           lineHeight: 1.6,
         }}
       >
-        AgentCore Runtime との連携サンプルです。HTTP SSE
-        経由でエージェントと対話できます。
+        AgentCore Runtime との連携サンプルです。AG-UI プロトコル経由で
+        CopilotKit がエージェントと対話します。
       </p>
 
       {!isRuntimeConfigured && (
@@ -64,32 +63,19 @@ export default function AgentChatSection({ runtimeArn }: AgentChatSectionProps) 
         </div>
       )}
 
-      <MessageList messages={messages} />
-
-      {error && (
-        <div
-          role="alert"
-          style={{
-            backgroundColor: "#fef2f2",
-            border: "1px solid #fca5a5",
-            color: "#991b1b",
-            borderRadius: "var(--radius, 0.5rem)",
-            padding: "0.75rem 1rem",
-            marginTop: "0.75rem",
-            marginBottom: "1rem",
-            fontSize: "0.9rem",
-          }}
-        >
-          {error}
-        </div>
+      {isRuntimeConfigured && (
+        <CopilotProvider>
+          <div style={{ height: "500px", border: "1px solid #e5e7eb", borderRadius: "0.5rem" }}>
+            <CopilotChat
+              labels={{
+                title: "エージェントチャット",
+                initial: "こんにちは！何かお手伝いできることはありますか？",
+                placeholder: "メッセージを入力...",
+              }}
+            />
+          </div>
+        </CopilotProvider>
       )}
-
-      <div style={{ marginTop: "0.75rem" }}>
-        <MessageInput
-          onSend={sendMessage}
-          disabled={isLoading || !isRuntimeConfigured}
-        />
-      </div>
     </section>
   );
 }

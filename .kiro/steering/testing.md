@@ -12,6 +12,7 @@ inclusion: always
 
 # エージェントのテスト環境に関する注意
 
-- ローカルでのエージェント動作確認は `run_local.py` を使用する（AgentCore Runtime 不要）
-- フロントエンドとエージェントの結合テストは Amplify develop 環境で行う
-- sandbox の Cognito と AgentCore Runtime の Cognito は異なるため、sandbox 環境での結合テストは不可
+- ローカルでのエージェント動作確認は `uvicorn` または `agentcore dev` を使用する（AgentCore Runtime 不要）
+- ローカルでの AG-UI 動作確認は curl で `/invocations` にリクエストを送信する
+- フロントエンドとエージェントの結合テストは Amplify Hosting のデプロイ環境で行う
+- ローカルではフロントエンドとエージェントを結合テストできない（SigV4 + コンピューティングロールが必要なため）

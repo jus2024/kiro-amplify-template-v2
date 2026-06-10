@@ -14,6 +14,6 @@ fileMatchPattern: "amplify/**/*"
 # AgentCore Runtime との責務分離
 
 - Amplify Hosting は Web アプリ + Cognito を担当する
-- AgentCore Runtime はエージェントの実行基盤を担当する
+- AgentCore Runtime はエージェントの実行基盤を担当する（AgentCore CLI で管理）
 - Amplify のビルド環境は Docker 非対応のため、AgentCore Runtime を Amplify の CDK スタックに含めない
 - Cognito User Pool は Amplify が管理し、AgentCore の JWT 認証設定で参照する

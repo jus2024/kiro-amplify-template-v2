@@ -7,7 +7,7 @@
 サンプルページは2つのセクションで構成されています:
 
 1. **Todo リスト** — Amplify Data（AppSync + DynamoDB）との CRUD 連携デモ
-2. **エージェントチャット** — AgentCore Runtime との HTTP SSE ストリーミング対話デモ
+2. **エージェントチャット** — AG-UI プロトコル + CopilotKit による AgentCore Runtime 対話デモ
 
 どちらもスターターテンプレートのサンプル実装であり、プロジェクトに合わせて置き換え・拡張することを想定しています。
 
